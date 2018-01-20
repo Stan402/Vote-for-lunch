@@ -12,6 +12,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.EnumSet;
 import java.util.Set;
 
 @Entity
@@ -31,4 +32,26 @@ public class User extends AbstractNamedEntity{
     @BatchSize(size = 200)
     private Set<Role> roles;
 
+    public User() {
+    }
+
+    public User(Integer id, String name, @NotBlank @Size(min = 5, max = 64) String password, Set<Role> roles) {
+        super(id, name);
+        this.password = password;
+        this.roles = roles;
+    }
+    public User(Integer id, String name, @NotBlank @Size(min = 5, max = 64) String password, Role role, Role... roles) {
+        super(id, name);
+        this.password = password;
+        this.roles = EnumSet.of(role, roles);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "roles=" + roles +
+                ", name='" + name + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }

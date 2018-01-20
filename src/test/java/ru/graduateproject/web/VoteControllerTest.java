@@ -12,19 +12,16 @@ import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import javax.annotation.PostConstruct;
-
-import static org.junit.Assert.*;
 
 @ContextConfiguration({
         "classpath:spring/spring-mvc.xml"
 })
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
-public class UserControllerTest {
+public class VoteControllerTest {
 
     protected MockMvc mockMvc;
 
@@ -40,7 +37,7 @@ public class UserControllerTest {
 
     @Test
     public void tryMe() throws Exception {
-        mockMvc.perform(get(UserController.REST_URL)).andExpect(status().isOk()).andDo(print());
+        mockMvc.perform(get(VoteController.REST_URL)).andExpect(status().isOk()).andDo(print());
     }
 
 }
