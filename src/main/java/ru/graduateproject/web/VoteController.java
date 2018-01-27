@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import ru.graduateproject.AuthorizedUser;
 import ru.graduateproject.service.RestaurantService;
 import ru.graduateproject.service.VoteService;
 import ru.graduateproject.to.RestaurantWithVotes;
@@ -31,7 +32,7 @@ public class VoteController {
     @PostMapping("/{restId}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void giveVote(@PathVariable("restId") int restId){
-
+        voteService.giveVote(restId, AuthorizedUser.id());
     }
 
 }

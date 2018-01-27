@@ -19,10 +19,7 @@ public interface VoteService {
 
     List<Restaurant> getRestaurants(LocalDate localDate);
 
-
     Restaurant getRestaurant(int restId, LocalDate localDate);
-
-    List<Dish> getDishes(LocalDate localDate);
 
     Map<Integer, Integer> getVoteResult(LocalDate localDate);
 

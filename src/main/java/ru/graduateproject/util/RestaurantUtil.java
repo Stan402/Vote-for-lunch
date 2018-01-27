@@ -2,6 +2,7 @@ package ru.graduateproject.util;
 
 import ru.graduateproject.model.Dish;
 import ru.graduateproject.model.Restaurant;
+import ru.graduateproject.to.DishTo;
 import ru.graduateproject.to.RestaurantWithVotes;
 
 import java.time.LocalDate;
@@ -19,6 +20,7 @@ public static List<RestaurantWithVotes> getRestaurantsWithVotes(List<Restaurant>
             .map(restaurant -> createRestaurantWithVotes(restaurant
                     , dishes.stream().filter(dish -> dish.getRestaurant().equals(restaurant)).collect(Collectors.toList())
                     , votes.get(restaurant.getId())))
+            .sorted(Comparator.comparingInt(RestaurantWithVotes::getVotes))
             .collect(Collectors.toList());
 }
 

@@ -30,13 +30,15 @@ public class VoteServiceImpl implements VoteService {
     private final RestaurantRepository restaurantRepository;
     private final VoteRepository voteRepository;
     private final UserRepository userRepository;
+    private final DishService dishService;
 
     @Autowired
-    public VoteServiceImpl(DishRepository dishRepository, RestaurantRepository restaurantRepository, VoteRepository voteRepository, UserRepository userRepository) {
+    public VoteServiceImpl(DishRepository dishRepository, RestaurantRepository restaurantRepository, VoteRepository voteRepository, UserRepository userRepository, DishService dishService) {
         this.dishRepository = dishRepository;
         this.restaurantRepository = restaurantRepository;
         this.voteRepository = voteRepository;
         this.userRepository = userRepository;
+        this.dishService = dishService;
     }
 
 
@@ -70,13 +72,6 @@ public class VoteServiceImpl implements VoteService {
         return restaurantRepository.findByIdAndCurrentMenuDate(restId, localDate);
     }
 
-
-    @Override
-    //@Cacheable("dishes")
-    public List<Dish> getDishes(LocalDate localDate) {
-        return dishRepository.findAllByDate(localDate);
-    }
-
     @Override
     //@Cacheable("votes")
     public Map<Integer, Integer> getVoteResult(LocalDate localDate) {
@@ -91,7 +86,7 @@ public class VoteServiceImpl implements VoteService {
     @Transactional(readOnly = true)
     public List<RestaurantWithVotes> getRestaurantsWithVotes(LocalDate date) {
 
-        return RestaurantUtil.getRestaurantsWithVotes(getRestaurants(date), getDishes(date), getVoteResult(date));
+        return RestaurantUtil.getRestaurantsWithVotes(getRestaurants(date), dishService.getAllOnDate(date), getVoteResult(date));
     }
 
 }

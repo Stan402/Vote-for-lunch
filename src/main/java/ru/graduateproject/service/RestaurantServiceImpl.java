@@ -10,6 +10,7 @@ import ru.graduateproject.repository.RestaurantRepository;
 import ru.graduateproject.util.ValidationUtil;
 import ru.graduateproject.util.exception.NotFoundException;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static ru.graduateproject.util.ValidationUtil.*;
@@ -17,10 +18,8 @@ import static ru.graduateproject.util.ValidationUtil.*;
 @Service
 public class RestaurantServiceImpl implements RestaurantService {
 
-    final
-    private RestaurantRepository restaurantRepository;
-    final
-    private DishRepository dishRepository;
+    final private RestaurantRepository restaurantRepository;
+    final private DishRepository dishRepository;
 
     @Autowired
     public RestaurantServiceImpl(RestaurantRepository restaurantRepository, DishRepository dishRepository) {
@@ -50,9 +49,18 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public void update(Restaurant restaurant, int id) {
+    public void update(Restaurant restaurant, int id) throws NotFoundException{
         Assert.notNull(restaurant, "restaurant must not be null");
         checkNotFoundWithId(restaurantRepository.save(restaurant), id);
+    }
+
+    @Override
+    public void verifyDate(int restId, LocalDate date) {
+        Restaurant restaurant = get(restId);
+        if (date.isAfter(restaurant.getCurrentMenuDate())){
+            restaurant.setCurrentMenuDate(date);
+            update(restaurant, restId);
+        }
     }
 
 

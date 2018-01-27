@@ -30,7 +30,7 @@ public class Dish extends AbstractNamedEntity{
     public Dish() {
     }
 
-    public Dish(Integer id, String name, @Range(min = 1, max = 500000) int price, @NotNull Restaurant restaurant, @NotNull LocalDate date) {
+    public Dish(Integer id, String name, @Range(min = 1, max = 500000)int price, @NotNull Restaurant restaurant, @NotNull LocalDate date) {
         super(id, name);
         this.price = price;
         this.restaurant = restaurant;
