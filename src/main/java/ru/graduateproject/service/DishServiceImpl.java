@@ -1,6 +1,7 @@
 package ru.graduateproject.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import ru.graduateproject.model.Dish;
@@ -15,6 +16,7 @@ import java.util.List;
 
 import static ru.graduateproject.util.ValidationUtil.checkNotFoundWithId;
 
+@Service
 public class DishServiceImpl implements DishService{
 
     @Autowired

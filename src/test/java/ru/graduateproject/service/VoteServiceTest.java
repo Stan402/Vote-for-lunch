@@ -25,12 +25,7 @@ import static ru.graduateproject.RestaurantTestData.*;
 import static ru.graduateproject.UserTestData.*;
 import static ru.graduateproject.VoteTestData.*;
 
-@ContextConfiguration({
-        "classpath:spring/spring-mvc.xml"
-})
-@RunWith(SpringJUnit4ClassRunner.class)
-@Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
-public class VoteServiceTest {
+public class VoteServiceTest extends AbstractServiceTest {
 
     @Autowired
     VoteService voteService;
@@ -39,7 +34,7 @@ public class VoteServiceTest {
     }
 
     @Test
-    public void getVoid() throws Exception{
+    public void getVote() throws Exception{
         Vote vote = voteService.getVote(USER_ID, DATE_11);
         assertMatch(vote, VOTE_USER_11);
     }
@@ -58,11 +53,6 @@ public class VoteServiceTest {
         assertMatch(restaurants, REST1, REST2);
     }
 
-    @Test
-    public void getDishes() throws Exception {
-        List<Dish> result = voteService.getDishes(DATE_11);
-        assertMatch(result, DISHES_11);
-    }
 
     @Test
     public void getVoteResult() throws Exception {

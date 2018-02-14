@@ -16,24 +16,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import javax.annotation.PostConstruct;
 
-@ContextConfiguration({
-        "classpath:spring/spring-mvc.xml"
-})
-@WebAppConfiguration
-@RunWith(SpringJUnit4ClassRunner.class)
-public class VoteControllerTest {
+public class VoteControllerTest extends AbstractControllerTest {
 
-    protected MockMvc mockMvc;
 
-    @Autowired
-    public WebApplicationContext webApplicationContext;
-
-    @PostConstruct
-    private void postConstruct() {
-        mockMvc = MockMvcBuilders
-                .webAppContextSetup(webApplicationContext)
-                .build();
-    }
 
     @Test
     public void tryMe() throws Exception {

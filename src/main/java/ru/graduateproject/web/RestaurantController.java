@@ -24,7 +24,7 @@ import static ru.graduateproject.util.ValidationUtil.*;
 @RestController
 @RequestMapping(value = RestaurantController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class RestaurantController {
-    static final String REST_URL = "rest/admin/restaurants";
+    static final String REST_URL = "/rest/admin/restaurants";
 
     @Autowired
     RestaurantService service;
@@ -54,7 +54,8 @@ public class RestaurantController {
         service.update(restaurant, id);
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping
+    @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity<Restaurant> createWithLocation(@RequestParam String name) {
         Restaurant restaurant = new Restaurant(null, name, LocalDate.now());
         Restaurant created = service.create(restaurant);
@@ -80,7 +81,7 @@ public class RestaurantController {
 
     @DeleteMapping("/{restId}/{date}/{dishId}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void deleteDish(@PathVariable int id) {
+    public void deleteDish(@PathVariable("dishId") int id) {
         dishService.delete(id);
     }
 
@@ -91,6 +92,7 @@ public class RestaurantController {
     }
 
     @PostMapping(value = "/{restId}/{date}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity<Dish> createDishWithLocation(@PathVariable("restId") int restId
             , @PathVariable("date") LocalDate date
             , @RequestBody DishTo dishTo) {

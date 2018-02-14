@@ -3,6 +3,7 @@ package ru.graduateproject.model;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Range;
+import ru.graduateproject.to.DishTo;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -35,6 +36,10 @@ public class Dish extends AbstractNamedEntity{
         this.price = price;
         this.restaurant = restaurant;
         this.date = date;
+    }
+
+    public Dish(Integer id, DishTo dishTo, Restaurant restaurant, @NotNull LocalDate date){
+        this(id, dishTo.getName(), dishTo.getPrice(), restaurant, date);
     }
 
     public int getPrice() {

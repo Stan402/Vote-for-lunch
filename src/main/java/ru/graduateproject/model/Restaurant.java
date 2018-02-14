@@ -21,6 +21,11 @@ public class Restaurant extends AbstractNamedEntity {
         this.currentMenuDate = currentMenuDate;
     }
 
+    public Restaurant(Restaurant restaurant){
+        super(restaurant.getId(), restaurant.getName());
+        this.currentMenuDate = restaurant.currentMenuDate;
+    }
+
     public LocalDate getCurrentMenuDate() {
         return currentMenuDate;
     }

@@ -18,7 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = UserController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserController {
-    static final String REST_URL = "rest/admin/users";
+    static final String REST_URL = "/rest/admin/users";
 
     @Autowired
     UserService service;

@@ -3,6 +3,7 @@ package ru.graduateproject.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.graduateproject.model.Dish;
@@ -18,12 +19,12 @@ public interface DishRepository extends JpaRepository<Dish, Integer> {
     @Modifying
     @Transactional
     @Query("DELETE FROM Dish d WHERE d.id=:id")
-    int delete(int id);
+    int delete(@Param("id") int id);
 
     @Override
     @Transactional
     Dish save(Dish dish);
 
     @Query("SELECT d FROM Dish d WHERE d.id=:id AND d.restaurant.id=:restId")
-    Dish findByIdAndRestId(int id, int restId);
+    Dish findByIdAndRestId(@Param("id") int id, @Param("restId") int restId);
 }

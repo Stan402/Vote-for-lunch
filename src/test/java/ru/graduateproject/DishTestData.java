@@ -25,6 +25,8 @@ public class DishTestData {
     public final static Dish DISH12 = new Dish(100016, "dish2", 2300, REST2, LocalDate.parse("2017-01-11"));
     public final static Dish DISH13 = new Dish(100017, "dish3", 2300, REST2, LocalDate.parse("2017-01-11"));
 
+    public final static int DISH8_ID = 100012;
+
 
     public static final List<Dish> DISHES_11 = Arrays.asList(DISH7, DISH8, DISH9, DISH10, DISH11, DISH12, DISH13);
 

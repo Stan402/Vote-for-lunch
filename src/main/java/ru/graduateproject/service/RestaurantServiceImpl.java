@@ -55,6 +55,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
+    @Transactional
     public void verifyDate(int restId, LocalDate date) {
         Restaurant restaurant = get(restId);
         if (date.isAfter(restaurant.getCurrentMenuDate())){
