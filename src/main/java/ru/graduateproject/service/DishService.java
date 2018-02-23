@@ -9,7 +9,6 @@ import ru.graduateproject.util.exception.NotFoundException;
 import java.time.LocalDate;
 import java.util.List;
 
-@Service
 public interface DishService {
 
     List<Dish> getAllOnDate(LocalDate localDate);

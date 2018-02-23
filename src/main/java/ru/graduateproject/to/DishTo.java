@@ -10,7 +10,14 @@ public class DishTo extends BaseTo {
     public DishTo() {
     }
 
+    public DishTo(Integer id, String name, int price) {
+        super(id);
+        this.name = name;
+        this.price = price;
+    }
+
     public DishTo(String name, int price) {
+        super(null);
         this.name = name;
         this.price = price;
     }

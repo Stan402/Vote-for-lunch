@@ -2,12 +2,14 @@ package ru.graduateproject.service;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import ru.graduateproject.DateTimeTestData;
 import ru.graduateproject.RestaurantTestData;
 import ru.graduateproject.model.Restaurant;
 
 import java.time.LocalDate;
 
 import static org.junit.Assert.*;
+import static ru.graduateproject.DateTimeTestData.DATE_15;
 import static ru.graduateproject.RestaurantTestData.*;
 
 public class RestaurantServiceTest extends AbstractServiceTest {
@@ -50,6 +52,10 @@ public class RestaurantServiceTest extends AbstractServiceTest {
 
     @Test
     public void verifyDate() throws Exception {
+        service.verifyDate(REST1_ID, DATE_15);
+        Restaurant updated = new Restaurant(REST1);
+        updated.setCurrentMenuDate(DATE_15);
+        assertMatch(service.get(REST1_ID), updated);
 
     }
 

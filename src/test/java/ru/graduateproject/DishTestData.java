@@ -1,6 +1,7 @@
 package ru.graduateproject;
 
 import ru.graduateproject.model.Dish;
+import ru.graduateproject.to.DishTo;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -27,8 +28,14 @@ public class DishTestData {
 
     public final static int DISH8_ID = 100012;
 
+    public final static Dish CREATED_DISH = new Dish(null, "new dish", 777, REST1, LocalDate.parse("2017-01-11"));
+
 
     public static final List<Dish> DISHES_11 = Arrays.asList(DISH7, DISH8, DISH9, DISH10, DISH11, DISH12, DISH13);
+
+    public static DishTo getTo(Dish dish){
+        return new DishTo(dish.getId(), dish.getName(), dish.getPrice());
+    }
 
     public static void assertMatch(Dish actual, Dish expected) {
         assertThat(actual).isEqualToComparingFieldByField(expected);

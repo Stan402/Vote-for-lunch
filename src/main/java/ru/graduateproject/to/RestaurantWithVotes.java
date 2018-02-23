@@ -5,13 +5,8 @@ import ru.graduateproject.model.Dish;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class RestaurantWithVotes extends BaseTo{
+public class RestaurantWithVotes extends RestaurantWithMenu{
 
-    private String name;
-
-    private LocalDateTime dateTime;
-
-    private List<Dish> menu;
 
     private int votes;
 
@@ -19,27 +14,13 @@ public class RestaurantWithVotes extends BaseTo{
     }
 
     public RestaurantWithVotes(Integer id, String name, List<Dish> menu, LocalDateTime dateTime, int votes) {
-        super(id);
-        this.name = name;
-        this.menu = menu;
-        this.dateTime = dateTime;
+        super(id, name, dateTime, menu);
         this.votes = votes;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public LocalDateTime getDateTime() {
-        return dateTime;
-    }
-
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
+    public RestaurantWithVotes(RestaurantWithMenu restaurant, int votes){
+        super(restaurant);
+        this.votes = votes;
     }
 
     public int getVotes() {
@@ -48,14 +29,6 @@ public class RestaurantWithVotes extends BaseTo{
 
     public void setVotes(int votes) {
         this.votes = votes;
-    }
-
-    public List<Dish> getMenu() {
-        return menu;
-    }
-
-    public void setMenu(List<Dish> menu) {
-        this.menu = menu;
     }
 
     @Override

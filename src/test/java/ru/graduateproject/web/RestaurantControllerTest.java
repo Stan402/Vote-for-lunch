@@ -6,9 +6,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import ru.graduateproject.DateTimeTestData;
-import ru.graduateproject.DishTestData;
 import ru.graduateproject.RestaurantTestData;
 import ru.graduateproject.TestUtil;
 import ru.graduateproject.model.Dish;
@@ -21,8 +18,6 @@ import ru.graduateproject.web.json.JsonUtil;
 import java.time.LocalDate;
 import java.util.stream.Collectors;
 
-import static org.junit.Assert.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static ru.graduateproject.DateTimeTestData.DATE_11;
 import static ru.graduateproject.DateTimeTestData.DATE_12;
@@ -145,7 +140,6 @@ public class RestaurantControllerTest extends AbstractControllerTest {
         expected.setId(returned.getId());
         assertMatch(returned, expected);
         assertMatch(dishService.getAllOnDate(DATE_12), expected);
-
     }
 
 }

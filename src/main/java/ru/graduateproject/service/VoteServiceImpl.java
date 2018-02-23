@@ -10,6 +10,7 @@ import ru.graduateproject.repository.DishRepository;
 import ru.graduateproject.repository.RestaurantRepository;
 import ru.graduateproject.repository.UserRepository;
 import ru.graduateproject.repository.VoteRepository;
+import ru.graduateproject.to.RestaurantWithMenu;
 import ru.graduateproject.to.RestaurantWithVotes;
 import ru.graduateproject.util.RestaurantUtil;
 import ru.graduateproject.util.ValidationUtil;
@@ -87,6 +88,11 @@ public class VoteServiceImpl implements VoteService {
     public List<RestaurantWithVotes> getRestaurantsWithVotes(LocalDate date) {
 
         return RestaurantUtil.getRestaurantsWithVotes(getRestaurants(date), dishService.getAllOnDate(date), getVoteResult(date));
+    }
+
+    @Override
+    public RestaurantWithMenu getRestaurantWithMenu(int restId, LocalDate date) {
+        return null;
     }
 
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.graduateproject.AuthorizedUser;
 import ru.graduateproject.service.RestaurantService;
 import ru.graduateproject.service.VoteService;
+import ru.graduateproject.to.RestaurantWithMenu;
 import ru.graduateproject.to.RestaurantWithVotes;
 
 import java.time.LocalDate;
@@ -33,6 +34,11 @@ public class VoteController {
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void giveVote(@PathVariable("restId") int restId){
         voteService.giveVote(restId, AuthorizedUser.id());
+    }
+
+    @GetMapping("/{restId}/{date}")
+    public RestaurantWithMenu getMenu(@PathVariable("restId") int restId, @PathVariable("date") LocalDate date){
+        return voteService.getRestaurantWithMenu(restId, date);
     }
 
 }
